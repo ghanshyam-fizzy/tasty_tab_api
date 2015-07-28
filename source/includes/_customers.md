@@ -208,4 +208,70 @@ customer[email] | Registered email id of the customer
 
 ## Login Via Facebook
 
-This api is used to login from facebook , in this case user is
+This api is used to login from facebook , in this case customer is will login into application by his facebook account ,
+first customer will click on the button or link "login by facebook" and it will redirect to facebook where he has to enter his credentials
+
+
+> Post reuest to URl will return the hash of existing customer or new customer:
+
+```ruby
+{
+    "status": "success",
+    "auth_token": "d4xdUCP31qV-JY_FsmYo"
+}
+
+```
+
+### HTTP Request
+
+`http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token`
+
+
+
+{
+  "provider": "facebook",
+
+  "uid": "1234567",
+
+  "info": {
+
+    "nickname":"jbloggs",
+
+    "email": "joe@bloggs.com",
+
+    "name": "Joe Bloggs",
+
+    "first_name": "Joe",
+
+    "last_name": "Bloggs",
+
+    "image": "http://graph.facebook.com/1234567/picture?type=square",
+
+    "urls": {
+
+"Facebook": "http://www.facebook.com/jbloggs'",
+
+    "location": "Palo Alto, California",
+
+    "verified": true,
+
+  },
+
+  "credentials":{
+
+    "token": "ABCDEF...",
+
+    "expires_at": "1321747205",
+
+    "expires": true,
+
+  },
+
+"Remove remaining hash for brevity.."
+
+}
+
+<aside class="success">
+This json data is use to create customer , it will return status as 'success' and customer's unique auth_token .
+</aside>
+
