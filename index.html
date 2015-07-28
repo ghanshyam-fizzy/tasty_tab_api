@@ -335,7 +335,69 @@ Customer has been registered for a particular restaurant (restaurant is based on
 
 <h2 id="login-via-facebook">Login Via Facebook</h2>
 
-<p>This api is used to login from facebook , in this case user is</p>
+<p>This api is used to login from facebook , in this case customer is will login into application by his facebook account ,
+first customer will click on the button or link &ldquo;login by facebook&rdquo; and it will redirect to facebook where he has to enter his credentials</p>
+
+<blockquote>
+<p>Post reuest to URl will return the hash of existing customer or new customer:</p>
+</blockquote>
+<pre class="highlight ruby"><code><span class="p">{</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span>
+    <span class="s2">"auth_token"</span><span class="p">:</span> <span class="s2">"d4xdUCP31qV-JY_FsmYo"</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token</code></p>
+
+<p>{
+  &ldquo;provider&rdquo;: &ldquo;facebook&rdquo;,</p>
+
+<p>&ldquo;uid&rdquo;: &ldquo;1234567&rdquo;,</p>
+
+<p>&ldquo;info&rdquo;: {</p>
+
+<p>&ldquo;nickname&rdquo;:&ldquo;jbloggs&rdquo;,</p>
+
+<p>&ldquo;email&rdquo;: &ldquo;joe@bloggs.com&rdquo;,</p>
+
+<p>&ldquo;name&rdquo;: &ldquo;Joe Bloggs&rdquo;,</p>
+
+<p>&ldquo;first_name&rdquo;: &ldquo;Joe&rdquo;,</p>
+
+<p>&ldquo;last_name&rdquo;: &ldquo;Bloggs&rdquo;,</p>
+
+<p>&ldquo;image&rdquo;: &ldquo;http://graph.facebook.com/1234567/picture?type=square&rdquo;,</p>
+
+<p>&ldquo;urls&rdquo;: {</p>
+
+<p>&ldquo;Facebook&rdquo;: &ldquo;http://www.facebook.com/jbloggs&rsquo;&rdquo;,</p>
+
+<p>&ldquo;location&rdquo;: &ldquo;Palo Alto, California&rdquo;,</p>
+
+<p>&ldquo;verified&rdquo;: true,</p>
+
+<p>},</p>
+
+<p>&ldquo;credentials&rdquo;:{</p>
+
+<p>&ldquo;token&rdquo;: &ldquo;ABCDEF&hellip;&rdquo;,</p>
+
+<p>&ldquo;expires_at&rdquo;: &ldquo;1321747205&rdquo;,</p>
+
+<p>&ldquo;expires&rdquo;: true,</p>
+
+<p>},</p>
+
+<p>&ldquo;Remove remaining hash for brevity..&rdquo;</p>
+
+<p>}</p>
+
+<aside class="success">
+This json data is use to create customer , it will return status as &lsquo;success&rsquo; and customer&rsquo;s unique auth_token .
+</aside>
 
           <h1 id="full-text-search">Full Text Search</h1>
 
