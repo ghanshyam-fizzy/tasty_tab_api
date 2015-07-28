@@ -107,8 +107,8 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 
 <h2 id="registration">Registration</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
-  </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dinesh_tasty@tastytab.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"princi"</span><span class="p">,</span><span class="w">
@@ -131,13 +131,13 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome! You have signed up successfully."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"auth_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qC7USZPSz2MyxNs3RFKv"</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4xdUCP31qV-JY_FsmYo"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="p">{</span>
-    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Welcome! You have signed up successfully."</span><span class="p">,</span>
-    <span class="s2">"auth_token"</span><span class="p">:</span> <span class="s2">"qC7USZPSz2MyxNs3RFKv"</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span><span class="p">,</span>
+    <span class="s2">"auth_token"</span><span class="p">:</span> <span class="s2">"d4xdUCP31qV-JY_FsmYo"</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -201,11 +201,11 @@ You must replace <code>sample_api_access_token</code> with your personal access 
 </tr>
 <tr>
 <td>customer[first_name]</td>
-<td>It should contain the first name of customer , it can be blank.</td>
+<td>It should contain the first name of customer , it cannot be blank.</td>
 </tr>
 <tr>
 <td>customer[last_name]</td>
-<td>It should contain the last name of customer , it can be blank.</td>
+<td>It should contain the last name of customer , it cannot be blank.</td>
 </tr>
 <tr>
 <td>customer[birth_date]</td>
@@ -332,6 +332,10 @@ Customer has been registered for a particular restaurant (restaurant is based on
 <td>Registered email id of the customer</td>
 </tr>
 </tbody></table>
+
+<h2 id="login-via-facebook">Login Via Facebook</h2>
+
+<p>This api is used to login from facebook , in this case user is</p>
 
           <h1 id="full-text-search">Full Text Search</h1>
 
