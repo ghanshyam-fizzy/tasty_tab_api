@@ -4,8 +4,8 @@
 
 ```json
 {
-  "access_token": "sample_api_access_token"
-  "customer" {
+  "access_token": "sample_api_access_token",
+  "customer": {
     "email": "dinesh_tasty@tastytab.com",
     "password": "password",
     "first_name": "princi",
@@ -30,15 +30,15 @@ response.raw_body
 
 ```json
 {
-    "status": "Welcome! You have signed up successfully.",
-    "auth_token": "qC7USZPSz2MyxNs3RFKv"
+    "status": "success",
+    "auth_token": "d4xdUCP31qV-JY_FsmYo"
 }
 ```
 
 ```ruby
 {
-    "status": "Welcome! You have signed up successfully.",
-    "auth_token": "qC7USZPSz2MyxNs3RFKv"
+    "status": "success",
+    "auth_token": "d4xdUCP31qV-JY_FsmYo"
 }
 ```
 
@@ -96,8 +96,8 @@ customer[password_confirmation]   : password
 Parameter | Description
 --------- | -----------
 customer[email] | Make sure it doesn’t already exists.
-customer[first_name] | It should contain the first name of customer , it can be blank.
-customer[last_name] | It should contain the last name of customer , it can be blank.
+customer[first_name] | It should contain the first name of customer , it cannot be blank.
+customer[last_name] | It should contain the last name of customer , it cannot be blank.
 customer[birth_date] | It should contain the birth date of customer.
 customer[password] | Password must be atleast 6 characters long.
 customer[phone_area_code] | It cannot be blank.
@@ -205,3 +205,7 @@ customer[email]              :   android_tastytab@tester.com
 Parameter | Description
 --------- | -----------
 customer[email] | Registered email id of the customer
+
+## Login Via Facebook
+
+This api is used to login from facebook , in this case user is
