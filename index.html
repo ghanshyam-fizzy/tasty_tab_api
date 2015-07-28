@@ -986,11 +986,8 @@ All food items and their details of particular category is fetched from database
 
 <h2 id="sync-restaurant-data-with-android">Sync Restaurant Data With Android</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
-  </span><span class="s2">"restaurant"</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-  </span><span class="s2">"app_sync_token"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"testing"</span><span class="w">
+</span><span class="err">{</span><span class="w">
+ </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
@@ -1039,7 +1036,7 @@ All food items and their details of particular category is fetched from database
 
 </code></pre>
 
-<p>The App Sync API will return entire restaurant hash in a nested &amp; easy to parse format. This hash includes restaurant menus, menu categories, foost</p>
+<p>The App Sync API will return entire restaurant hash in a nested &amp; easy to parse format. This hash includes restaurant menus, menu categories, food, item modifier groups with item modifiers</p>
 
 <p>These hash may contain duplicate data, so remember to remove any redundant data.</p>
 
