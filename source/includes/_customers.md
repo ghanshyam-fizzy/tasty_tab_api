@@ -208,9 +208,10 @@ customer[email] | Registered email id of the customer
 
 ## Login Via Facebook
 
-This api is used to login from facebook , in this case customer is will login into application by his facebook account ,
-first customer will click on the button or link "login by facebook" and it will redirect to facebook where he has to enter his credentials
+This api is used to login from facebook , in this case customer will login into application by his facebook account ,
+first customer will click on the button or link "login by facebook" and it will redirect to facebook login page where he has to enter his credentials
 
+then it must return some data in json format to android app and then that data is posted on the following URL and then it would create customer on database
 
 > Post reuest to URl will return the hash of existing customer or new customer:
 
