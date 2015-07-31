@@ -206,12 +206,12 @@ Parameter | Description
 --------- | -----------
 customer[email] | Registered email id of the customer
 
-## Login Via Facebook
+## Login Via Facebook & Gmail
 
-This api is used to login from facebook , in this case customer will login into application by his facebook account ,
-first customer will click on the button or link "login by facebook" and it will redirect to facebook login page where he has to enter his credentials
+This api is used to login from customer's facebook and gmail account in this case customer can login into application by his facebook or gmail account ,
+first customer will click on the button or link "login by facebook" or "login by gmail" and it will redirect to social site login page where he has to enter his credentials
 
-then it must return some data in json format to android app and then that data is posted on the following URL and then it would create customer on database
+then it must return some data in json format to android app and then that data is posted on the following URL and then it would create customer on database and it will direct login into the application .
 
 > Post reuest to URl will return the hash of existing customer or new customer:
 
@@ -227,52 +227,20 @@ then it must return some data in json format to android app and then that data i
 
 `http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token`
 
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+customer[provider]    | It could be "facebook" or "gmail"
+customer[uid]         | Customer unique ID on social site account
+customer[email]       | Registered email id of the customer
+customer[name]        | Full name of customer on social site
 
 
-{
-  "provider": "facebook",
-
-  "uid": "1234567",
-
-  "info": {
-
-    "nickname":"jbloggs",
-
-    "email": "joe@bloggs.com",
-
-    "name": "Joe Bloggs",
-
-    "first_name": "Joe",
-
-    "last_name": "Bloggs",
-
-    "image": "http://graph.facebook.com/1234567/picture?type=square",
-
-    "urls": {
-
-"Facebook": "http://www.facebook.com/jbloggs'",
-
-    "location": "Palo Alto, California",
-
-    "verified": true,
-
-  },
-
-  "credentials":{
-
-    "token": "ABCDEF...",
-
-    "expires_at": "1321747205",
-
-    "expires": true,
-
-  },
-
-"Remove remaining hash for brevity.."
-
-}
+<aside class="warning">
+All these fields are manadatory to create record in database .
+</aside>
 
 <aside class="success">
 This json data is use to create customer , it will return status as 'success' and customer's unique auth_token .
 </aside>
-
