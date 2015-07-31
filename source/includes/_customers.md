@@ -208,24 +208,57 @@ customer[email] | Registered email id of the customer
 
 ## Login Via Facebook & Gmail
 
-This api is used to login from customer's facebook and gmail account in this case customer can login into application by his facebook or gmail account ,
-first customer will click on the button or link "login by facebook" or "login by gmail" and it will redirect to social site login page where he has to enter his credentials
+```json
+{
+  "access_token": "sample_api_access_token",
+  "customer":{
+    "provider": "facebook / gmail",
+    "uid": "101",
+    "email": "ghanshyamanand1989@gmail.com",
+    "name": "Full Name"
+  }
+}
+```
 
-then it must return some data in json format to android app and then that data is posted on the following URL and then it would create customer on database and it will direct login into the application .
+```ruby
+require 'unirest'
 
-> Post reuest to URl will return the hash of existing customer or new customer:
+response = Unirest.post "http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {customer: {name: "princi narula", email: "princi_android_tastytab@tester.com", provider: "gmail" , uid: "10101"}}
+
+response.raw_body
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": "success",
+    "auth_token": "d4xdUCP31qV-JY_FsmYo"
+}
+```
 
 ```ruby
 {
     "status": "success",
     "auth_token": "d4xdUCP31qV-JY_FsmYo"
 }
-
 ```
+
+This api is used to login from customer's facebook and gmail account in this case customer can login into application by his facebook or gmail account ,
+first customer will click on the button or link "login by facebook" or "login by gmail" and it will redirect to social site login page where he has to enter his credentials
+
+then it must return some data in json format to android app and then that data is posted on the following URL and then it would create customer on database and it will direct login into the application .
+
+
+
 
 ### HTTP Request
 
-`http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token`
+POST http://192.34.57.207/api/v1/social_auth?access_token=sample_api_access_token
+
+### POSTMAN Request :
+
+POST http://192.34.57.207/api/v1/customers/registrations?access_token=sample_api_access_token
 
 ### URL Parameters
 
@@ -237,9 +270,7 @@ customer[email]       | Registered email id of the customer
 customer[name]        | Full name of customer on social site
 
 
-<aside class="warning">
-All these fields are manadatory to create record in database .
-</aside>
+
 
 <aside class="success">
 This json data is use to create customer , it will return status as 'success' and customer's unique auth_token .
