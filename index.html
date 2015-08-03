@@ -1061,7 +1061,6 @@ All food items and their details of particular category is fetched from database
 
 <h2 id="sync-restaurant-data-with-android">Sync Restaurant Data With Android</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="err">{</span><span class="w">
  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1125,24 +1124,22 @@ All food items and their details of particular category is fetched from database
 
           <h1 id="order">Order</h1>
 
-<p>This is order API and it  will help you to create new order on application database and ethor also , apart from creation of new order we also have api to push food items in existing order .</p>
+<p>This is order API and it  will help you to create new order on application database and ethor also , apart from creation of new order we also have api to push food items , quantity and its item modifiers in existing order .</p>
 
 <h2 id="new-order-api">New Order Api</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">                  </span><span class="s2">"sample_api_access_token"</span><span class="w">
-  </span><span class="s2">"customer_first_name"</span><span class="err">:</span><span class="w">           </span><span class="s2">"Sachin"</span><span class="w">
-  </span><span class="s2">"customer_last_name"</span><span class="err">:</span><span class="w">            </span><span class="s2">"Mathur"</span><span class="w">
-  </span><span class="s2">"birth_date"</span><span class="err">:</span><span class="w">                    </span><span class="s2">"25-08-1989"</span><span class="w">
-  </span><span class="s2">"email_address"</span><span class="err">:</span><span class="w">                 </span><span class="s2">"sachin_mathur@tastytab.com"</span><span class="w">
-  </span><span class="s2">"phone_area_code"</span><span class="err">:</span><span class="w">               </span><span class="s2">"101"</span><span class="w">
-  </span><span class="s2">"phone_number"</span><span class="err">:</span><span class="w">                  </span><span class="s2">"1234512345"</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">                       </span><span class="s2">"sample_api_access_token"</span><span class="w">
+  </span><span class="s2">"food_items[16][quantity]"</span><span class="w">            </span><span class="s2">"8"</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="w">    </span><span class="s2">"380"</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="w">    </span><span class="s2">"381"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/orders?access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">customer_first_name: </span><span class="s2">"Sachin"</span> <span class="p">,</span> <span class="ss">customer_last_name: </span><span class="s2">"Mathur"</span> <span class="p">,</span> <span class="ss">birth_date: </span><span class="s2">"25-08-1989"</span> <span class="p">,</span> <span class="ss">email_address: </span><span class="s2">"sachin_mathur@tastytab.com"</span> <span class="p">,</span> <span class="ss">phone_area_code: </span><span class="s2">"101"</span> <span class="p">,</span> <span class="ss">phone_number: </span><span class="s2">"1234512345"</span><span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"sample_api_access_token"</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="s2">"food_items"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"16"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"quantity"</span><span class="o">=&gt;</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"item_modifiers"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">"380"</span><span class="p">,</span> <span class="s2">"381"</span><span class="p">]}</span> <span class="p">}</span> <span class="p">}</span>
+
 
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
@@ -1152,56 +1149,82 @@ All food items and their details of particular category is fetched from database
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pos_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QSCSI4OR80"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pos_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZZGDI0F01K"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dine_in"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STAGED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-07T10:07:28.483Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-03T07:30:57.520Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restaurant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sagar ratna"</span><span class="w">
+        </span><span class="s2">"restaurant_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subway"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"table"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sachin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mathur"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sachin_mathur@tastytab.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234512345"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"food_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_variant_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pos_variant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UUP6RY8HM2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"modifier_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UD3XRKVR1E"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"modifier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sprite"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"modifier_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IBYFR10BAQ"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"modifier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomato"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="p">{</span>
-    <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"pos_id"</span><span class="p">:</span> <span class="s2">"QSCSI4OR80"</span><span class="p">,</span>
-    <span class="s2">"order_type"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">"pos_id"</span><span class="p">:</span> <span class="s2">"ZZGDI0F01K"</span><span class="p">,</span>
+    <span class="s2">"order_type"</span><span class="p">:</span> <span class="s2">"dine_in"</span><span class="p">,</span>
     <span class="s2">"order_status"</span><span class="p">:</span> <span class="s2">"STAGED"</span><span class="p">,</span>
-    <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2015-07-07T10:07:28.483Z"</span><span class="p">,</span>
+    <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2015-08-03T07:30:57.520Z"</span><span class="p">,</span>
     <span class="s2">"restaurant"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"sagar ratna"</span>
+        <span class="s2">"restaurant_id"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"subway"</span>
     <span class="p">},</span>
-    <span class="s2">"table"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-    <span class="s2">"customer"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span>
-        <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Sachin"</span><span class="p">,</span>
-        <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"Mathur"</span><span class="p">,</span>
-        <span class="s2">"email"</span><span class="p">:</span> <span class="s2">"sachin_mathur@tastytab.com"</span><span class="p">,</span>
-        <span class="s2">"phone_number"</span><span class="p">:</span> <span class="s2">"1234512345"</span>
-    <span class="p">}</span>
+    <span class="s2">"order_items"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"order_item"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"food_item_id"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+                <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                <span class="s2">"pos_variant_name"</span><span class="p">:</span> <span class="s2">"default"</span><span class="p">,</span>
+                <span class="s2">"pos_variant_id"</span><span class="p">:</span> <span class="s2">"UUP6RY8HM2"</span><span class="p">,</span>
+                <span class="s2">"total"</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
+                <span class="s2">"modifiers"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">"modifier_id"</span><span class="p">:</span> <span class="s2">"UD3XRKVR1E"</span><span class="p">,</span>
+                        <span class="s2">"modifier_name"</span><span class="p">:</span> <span class="s2">"sprite"</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">"modifier_id"</span><span class="p">:</span> <span class="s2">"IBYFR10BAQ"</span><span class="p">,</span>
+                        <span class="s2">"modifier_name"</span><span class="p">:</span> <span class="s2">"tomato"</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>This endpoint create a fresh order on application database and ethor as well . Before creating a new order we have to create a new customer and then book a table for that customer .</p>
+<p>This endpoint create a fresh order on application database and ethor as well . It will create a new order with food items and book a table for that customer .</p>
 
 <p>|&mdash;- Steps &mdash;-|</p>
 
 <ol>
-<li><p>Create a new customer (we have to send parameters to create new cutomer at the time of order creation , and one more thing we have to pass unique email address for customer .)</p></li>
-<li><p>Book a table for customer . it will only book a table whose availability is true .</p></li>
-<li><p>Create new order on application as well as on ethor .</p></li>
-<li><p>Reserve that particular table for customer  .</p></li>
+<li><p>Create a new order on application as well as on ethor  (we have to send parameters to create new order like food items ,
+quantity , item modifiers)</p></li>
+<li><p>Book a table .</p></li>
+<li><p>It will only book a table whose availability is true .</p></li>
 </ol>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1217,33 +1240,21 @@ All food items and their details of particular category is fetched from database
 </tr>
 </thead><tbody>
 <tr>
-<td>customer_first_name</td>
+<td>food_item_id</td>
 <td>Make sure it&rsquo;s does not empty  .</td>
 </tr>
 <tr>
-<td>customer_last_name</td>
+<td>quantity</td>
 <td>Make sure it&rsquo;s does not empty .</td>
 </tr>
 <tr>
-<td>birth_date</td>
-<td>Make sure it&rsquo;s does not empty .</td>
-</tr>
-<tr>
-<td>email_address</td>
-<td>Make sure it&rsquo;s does not empty and it should be unique email address .</td>
-</tr>
-<tr>
-<td>phone_area_code</td>
-<td>Make sure it&rsquo;s does not empty  .</td>
-</tr>
-<tr>
-<td>phone_number</td>
-<td>Make sure it&rsquo;s does not empty  .</td>
+<td>item modifier</td>
+<td>Make sure it may or may not be empty  .</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Customer is created and its associated  order is also created on application database and ethor .
+Order is created and its associated  food items is also added on application database and ethor .
 </aside>
 
           <h1 id="errors">Errors</h1>
