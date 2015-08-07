@@ -1149,70 +1149,13 @@ All food items and their details of particular category is fetched from database
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pos_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZZGDI0F01K"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dine_in"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STAGED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-03T07:30:57.520Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"restaurant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"restaurant_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subway"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"order_item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"food_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"pos_variant_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"pos_variant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UUP6RY8HM2"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"modifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"modifier_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UD3XRKVR1E"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"modifier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sprite"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"modifier_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IBYFR10BAQ"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"modifier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomato"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="p">{</span>
-    <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="s2">"pos_id"</span><span class="p">:</span> <span class="s2">"ZZGDI0F01K"</span><span class="p">,</span>
-    <span class="s2">"order_type"</span><span class="p">:</span> <span class="s2">"dine_in"</span><span class="p">,</span>
-    <span class="s2">"order_status"</span><span class="p">:</span> <span class="s2">"STAGED"</span><span class="p">,</span>
-    <span class="s2">"order_date"</span><span class="p">:</span> <span class="s2">"2015-08-03T07:30:57.520Z"</span><span class="p">,</span>
-    <span class="s2">"restaurant"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"restaurant_id"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"subway"</span>
-    <span class="p">},</span>
-    <span class="s2">"order_items"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">"order_item"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">"food_item_id"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-                <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-                <span class="s2">"pos_variant_name"</span><span class="p">:</span> <span class="s2">"default"</span><span class="p">,</span>
-                <span class="s2">"pos_variant_id"</span><span class="p">:</span> <span class="s2">"UUP6RY8HM2"</span><span class="p">,</span>
-                <span class="s2">"total"</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
-                <span class="s2">"modifiers"</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="p">{</span>
-                        <span class="s2">"modifier_id"</span><span class="p">:</span> <span class="s2">"UD3XRKVR1E"</span><span class="p">,</span>
-                        <span class="s2">"modifier_name"</span><span class="p">:</span> <span class="s2">"sprite"</span>
-                    <span class="p">},</span>
-                    <span class="p">{</span>
-                        <span class="s2">"modifier_id"</span><span class="p">:</span> <span class="s2">"IBYFR10BAQ"</span><span class="p">,</span>
-                        <span class="s2">"modifier_name"</span><span class="p">:</span> <span class="s2">"tomato"</span>
-                    <span class="p">}</span>
-                <span class="p">]</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -1256,6 +1199,132 @@ quantity , item modifiers)</p></li>
 <aside class="success">
 Order is created and its associated  food items is also added on application database and ethor .
 </aside>
+
+<h2 id="add-food-items-to-existing-order">Add food items to existing order</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">                       </span><span class="s2">"sample_api_access_token"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][quantity]"</span><span class="p">:</span><span class="w">            </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="p">:</span><span class="w">    </span><span class="s2">"380"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="p">:</span><span class="w">    </span><span class="s2">"381"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w">                            </span><span class="mi">21</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="s2">"food_items"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"16"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"quantity"</span><span class="o">=&gt;</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"item_modifiers"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">"380"</span><span class="p">,</span> <span class="s2">"381"</span><span class="p">]}</span> <span class="p">,</span><span class="s2">"order_id"</span><span class="o">=&gt;</span><span class="s2">"21"</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="p">{</span>
+    <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This API is used to add extra food item in existing order , request is same as we have in create new order Api only we have to add order id of order in which we want to add food items , first it will search that order in the database and if it is found then it will add the food items in that order or otherwise it will create the new order .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST  http://192.34.57.207/api/v1/orders?access_token=sample_api_access_token</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>food_item_id</td>
+<td>Make sure it&rsquo;s does not empty  .</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Make sure it&rsquo;s does not empty .</td>
+</tr>
+<tr>
+<td>item modifier</td>
+<td>Make sure it may not be empty  .</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>It may or may not be empty  .</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-existing-food-items-in-order">Update existing food items in order</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">                       </span><span class="s2">"sample_api_access_token"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][quantity]"</span><span class="p">:</span><span class="w">            </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="p">:</span><span class="w">    </span><span class="s2">"380"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="p">:</span><span class="w">    </span><span class="s2">"381"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w">                            </span><span class="mi">21</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="s2">"food_items"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"16"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"quantity"</span><span class="o">=&gt;</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"item_modifiers"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">"380"</span><span class="p">,</span> <span class="s2">"381"</span><span class="p">]}</span> <span class="p">,</span><span class="s2">"order_id"</span><span class="o">=&gt;</span><span class="s2">"21"</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight ruby"><code><span class="p">{</span>
+    <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"success"</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>This API is used to update the existing food item in existing order , request is same as we have in create new order Api only we have to add order id of order in which we want to add food items , first it will search that order in the database and part from order id we also have to sent the the food item id , then it will search that food item in existing order and if food item is found it will update the food item .</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST  http://192.34.57.207/api/v1/orders?access_token=sample_api_access_token</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>food_item_id</td>
+<td>Make sure it&rsquo;s does not empty  .</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>Make sure it&rsquo;s does not empty .</td>
+</tr>
+<tr>
+<td>item modifier</td>
+<td>Make sure it may not be empty  .</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>It may or may not be empty  .</td>
+</tr>
+</tbody></table>
 
           <h1 id="errors">Errors</h1>
 
