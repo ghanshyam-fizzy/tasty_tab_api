@@ -60,9 +60,9 @@
 
           <h1 id="authentication">Authentication</h1>
 
-<p>To interact with TastyTab&rsquo;s API you need to authenticate yourself by including provided <code class="prettyprint">access_token</code> via query string parameter.</p>
-
-<p>Some sensitive requests also require <code class="prettyprint">waiter_token</code> &amp; <code class="prettyprint">manager_token</code>.</p>
+<p>To interact with TastyTab&rsquo;s API you need to authenticate yourself by including provided <code class="prettyprint">access_token</code> and <code class="prettyprint">restaurant_token</code> via query string parameter.
+Restaurant_token will be available in restaurant database.
+Some sensitive requests also require <code class="prettyprint">waiter_token</code> &amp; <code class="prettyprint">manager_token</code>.</p>
 
 <h3 id="http-request">HTTP REQUEST</h3>
 
@@ -76,13 +76,13 @@
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'httparty'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'http://www.tastytab.com/api/v1/?access_token=sample_api_access_token'</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'http://www.tastytab.com/api/v1/?access_token=sample_api_access_token&amp;restaurant_token=..........'</span><span class="p">)</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">body</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace sample access token <code class="prettyprint">sample_api_access_token</code> with your API key.</p>
+<p>Make sure to replace sample access token <code class="prettyprint">sample_api_access_token</code> with your API key and <code class="prettyprint">restaurant token</code> according to restaurant because with every new restaurant restaurant token is generated.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
@@ -419,6 +419,7 @@ This json data is use to create customer , it will return status as &lsquo;succe
 <h2 id="search-particular-food-item">Search Particular Food Item</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">   </span><span class="s2">"sample_api_access_token"</span><span class="w">
+  </span><span class="s2">"restaurant_token"</span><span class="err">:</span><span class="w"> </span><span class="s2">"......."</span><span class="w">
   </span><span class="s2">"search_value"</span><span class="err">:</span><span class="w">   </span><span class="s2">"FRIED ZUCCHINI"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -426,7 +427,7 @@ This json data is use to create customer , it will return status as &lsquo;succe
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"FRIED ZUCCHINI"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"sample_api_access_token"</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"FRIED ZUCCHINI"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"sample_api_access_token"</span><span class="p">,</span> <span class="ss">restaurant_token: </span><span class="s2">".........."</span><span class="p">}</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -623,7 +624,7 @@ This json data is use to create customer , it will return status as &lsquo;succe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=sample_api_access_token&amp;search_value=FRIED ZUCCHINI</code></p>
+<p><code class="prettyprint">GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=sample_api_access_token&amp;restaurant_token=......&amp;search_value=FRIED ZUCCHINI</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -637,6 +638,10 @@ This json data is use to create customer , it will return status as &lsquo;succe
 <td>search_value</td>
 <td>Make sure it&rsquo;s does not empty and it should be valid food item name .</td>
 </tr>
+<tr>
+<td>restaurant_token</td>
+<td>Make sure it&rsquo;s not empty and it will be available in database of restaurant .</td>
+</tr>
 </tbody></table>
 
 <aside class="success">
@@ -646,13 +651,14 @@ A particular food item and its complete details is fetched from database .
 <h2 id="get-all-food-items-of-particular-category">Get all food items of particular category</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">   </span><span class="s2">"sample_api_access_token"</span><span class="w">
+  </span><span class="s2">"restaurant_token"</span><span class="err">:</span><span class="w"> </span><span class="s2">"..........."</span><span class="w">
   </span><span class="s2">"search_value"</span><span class="err">:</span><span class="w">   </span><span class="s2">"Sides"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"Sides"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"sample_api_access_token"</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/restaurants/2/search"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="ss">search_value: </span><span class="s2">"Sides"</span> <span class="p">,</span> <span class="ss">access_token: </span><span class="s2">"sample_api_access_token"</span> <span class="p">,</span> <span class="ss">restaurant_token: </span><span class="s2">"......."</span><span class="p">}</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -976,7 +982,7 @@ A particular food item and its complete details is fetched from database .
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://localhost:3000/api/v1/restaurants/2/search?access_token=sample_api_access_token&amp;search_value=Sides</code></p>
+<p><code class="prettyprint">GET http://localhost:3000/api/v1/restaurants/2/search?access_token=sample_api_access_token&amp;restaurant_token=........&amp;search_value=Sides</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -989,6 +995,10 @@ A particular food item and its complete details is fetched from database .
 <tr>
 <td>search_value</td>
 <td>It should be valid food item name or valid category name</td>
+</tr>
+<tr>
+<td>restaurant_token</td>
+<td>Make sure it&rsquo;s not empty and it will be available in database of restaurant .</td>
 </tr>
 </tbody></table>
 
@@ -1008,7 +1018,7 @@ All food items and their details of particular category is fetched from database
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/24/app_sync.json?access_token=sample_api_access_token"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://localhost:3000/api/v1/24/app_sync.json?access_token=sample_api_access_token&amp;restaurant_token=......."</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -1051,9 +1061,10 @@ All food items and their details of particular category is fetched from database
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://tastytab.com/api/v1/:id/app_sync?access_token=sample_api_access_token</code></p>
+<p><code class="prettyprint">GET http://tastytab.com/api/v1/:id/app_sync?access_token=sample_api_access_token&amp;restaurant_token=......</code></p>
 
-<p>Replace <code class="prettyprint">:id</code> with restaurant id. Also, remember to replace access_token with your own access_token.</p>
+<p>Replace <code class="prettyprint">:id</code> with restaurant id. Also, remember to replace access_token with your own access_token.
+Replace restaurant_token with your restaurant token which is present in database.</p>
 
 <p>Data will only be sent if it has changed since last sync. We continuously run sync task in background to make sure everything stays in sync.</p>
 
@@ -1062,11 +1073,12 @@ All food items and their details of particular category is fetched from database
 <h2 id="sync-restaurant-data-with-android">Sync Restaurant Data With Android</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_api_access_token"</span><span class="w">
+ </span><span class="s2">"restaurant_token"</span><span class="err">:</span><span class="w"> </span><span class="s2">"........."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">get</span> <span class="s2">"http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token&amp;restaurant_token=......"</span>
 
 <span class="n">response</span><span class="p">.</span><span class="nf">raw_body</span>
 </code></pre>
@@ -1116,11 +1128,11 @@ All food items and their details of particular category is fetched from database
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token</code></p>
+<p><code class="prettyprint">GET http://192.34.57.207/api/v1/restaurants/app_sync_with_android?access_token=sample_api_access_token&amp;restaurant_token=.......</code></p>
 
 <p>Data will only be sent if it has changed since last sync. To check this it has android app sync token in restaurant table which will be updated whenever some changes made to food item table or any other tables such as food image  , menus , categories , review , tables , item modifiers etc .</p>
 
-<p>At the time of syncing the android developer has to enter android app sync token , if token matche with the token present in the database then there would no changes made , but if the token does not match or android developer does not provide any token then it will return entrie restaurant hash ..</p>
+<p>At the time of syncing the android developer has to enter android app sync token , if token matches with the token present in the database then there would no changes made , but if the token does not match or android developer does not provide any token then it will return entrie restaurant hash ..</p>
 
           <h1 id="order">Order</h1>
 
@@ -1129,6 +1141,7 @@ All food items and their details of particular category is fetched from database
 <h2 id="new-order-api">New Order Api</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w">                       </span><span class="s2">"sample_api_access_token"</span><span class="w">
+  </span><span class="s2">"restaurant_token"</span><span class="w">                    </span><span class="s2">"............"</span><span class="w">
   </span><span class="s2">"food_items[16][quantity]"</span><span class="w">            </span><span class="s2">"8"</span><span class="w">
   </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="w">    </span><span class="s2">"380"</span><span class="w">
   </span><span class="s2">"food_items[16][item_modifiers][]"</span><span class="w">    </span><span class="s2">"381"</span><span class="w">
@@ -1138,7 +1151,7 @@ All food items and their details of particular category is fetched from database
 </span></code></pre>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'unirest'</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="s2">"food_items"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"16"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"quantity"</span><span class="o">=&gt;</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"item_modifiers"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">"380"</span><span class="p">,</span> <span class="s2">"381"</span><span class="p">]}</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">Unirest</span><span class="p">.</span><span class="nf">post</span> <span class="s2">"http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&amp;restaurant_token=......"</span><span class="p">,</span> <span class="n">headers</span><span class="p">:{</span> <span class="s2">"Accept"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span> <span class="p">},</span> <span class="ss">parameters: </span><span class="p">{</span><span class="s2">"food_items"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"16"</span><span class="o">=&gt;</span><span class="p">{</span><span class="s2">"quantity"</span><span class="o">=&gt;</span><span class="s2">"5"</span><span class="p">,</span> <span class="s2">"item_modifiers"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">"380"</span><span class="p">,</span> <span class="s2">"381"</span><span class="p">]}</span> <span class="p">}</span> <span class="p">}</span>
 
 
 
@@ -1172,7 +1185,7 @@ quantity , item modifiers)</p></li>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST  http://192.34.57.207/api/v1/orders?access_token=sample_api_access_token</code></p>
+<p><code class="prettyprint">POST  http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&amp;restaurant_token=..........</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
