@@ -7,6 +7,7 @@ This is order API and it  will help you to create new order on application datab
 ```json
 {
   "access_token":                       "sample_api_access_token"
+  "restaurant_token"                    "............"
   "food_items[16][quantity]"            "8"
   "food_items[16][item_modifiers][]"    "380"
   "food_items[16][item_modifiers][]"    "381"
@@ -18,7 +19,7 @@ This is order API and it  will help you to create new order on application datab
 ```ruby
 require 'unirest'
 
-response = Unirest.post "http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token", headers:{ "Accept" => "application/json" }, parameters: {"food_items"=>{"16"=>{"quantity"=>"5", "item_modifiers"=>["380", "381"]} } }
+response = Unirest.post "http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&restaurant_token=......", headers:{ "Accept" => "application/json" }, parameters: {"food_items"=>{"16"=>{"quantity"=>"5", "item_modifiers"=>["380", "381"]} } }
 
 
 
@@ -41,6 +42,8 @@ response.raw_body
 }
 ```
 
+
+
 This endpoint create a fresh order on application database and ethor as well . It will create a new order with food items and book a table for that customer .
 
 |---- Steps ----|
@@ -55,7 +58,7 @@ This endpoint create a fresh order on application database and ethor as well . I
 
 ### HTTP Request
 
-`POST  http://192.34.57.207/api/v1/orders?access_token=sample_api_access_token`
+`POST  http://192.34.57.207/api/v1/add_food_items?access_token=sample_api_access_token&restaurant_token=..........`
 
 ### Query Parameters
 

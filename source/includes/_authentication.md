@@ -1,7 +1,7 @@
 # Authentication
 
-To interact with TastyTab's API you need to authenticate yourself by including provided `access_token` via query string parameter.
-
+To interact with TastyTab's API you need to authenticate yourself by including provided `access_token` and `restaurant_token` via query string parameter.
+Restaurant_token will be available in restaurant database.
 Some sensitive requests also require `waiter_token` & `manager_token`.
 
 ### HTTP REQUEST
@@ -20,13 +20,13 @@ Some sensitive requests also require `waiter_token` & `manager_token`.
 ```ruby
 require 'httparty'
 
-response = HTTParty.get('http://www.tastytab.com/api/v1/?access_token=sample_api_access_token')
+response = HTTParty.get('http://www.tastytab.com/api/v1/?access_token=sample_api_access_token&restaurant_token=..........')
 
 response.body
 ```
 
 
-> Make sure to replace sample access token `sample_api_access_token` with your API key.
+> Make sure to replace sample access token `sample_api_access_token` with your API key and `restaurant token` according to restaurant because with every new restaurant restaurant token is generated.
 
 ```json
 {

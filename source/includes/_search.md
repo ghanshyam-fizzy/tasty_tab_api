@@ -10,6 +10,7 @@ A user can search a paticular food item in a restaurant or user also has facilit
 ```json
 {
   "access_token":   "sample_api_access_token"
+  "restaurant_token": "......."
   "search_value":   "FRIED ZUCCHINI"
 }
 
@@ -19,7 +20,7 @@ A user can search a paticular food item in a restaurant or user also has facilit
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "FRIED ZUCCHINI" , access_token: "sample_api_access_token"}
+response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "FRIED ZUCCHINI" , access_token: "sample_api_access_token", restaurant_token: ".........."}
 
 response.raw_body
 ```
@@ -218,14 +219,14 @@ This endpoint search particular food item in a particular restaurant.
 
 ### HTTP Request
 
-`GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=sample_api_access_token&search_value=FRIED ZUCCHINI`
+`GET  http://tastytab.com/api/v1/restaurants/2/search?access_token=sample_api_access_token&restaurant_token=......&search_value=FRIED ZUCCHINI`
 
 ### Query Parameters
 
 Parameter | Description
 --------- | -----------
-search_value | Make sure it's does not empty and it should be valid food item name .
-
+search_value      | Make sure it's does not empty and it should be valid food item name .
+restaurant_token  | Make sure it's not empty and it will be available in database of restaurant .
 
 <aside class="success">
 A particular food item and its complete details is fetched from database .
@@ -236,6 +237,7 @@ A particular food item and its complete details is fetched from database .
 ```json
 {
   "access_token":   "sample_api_access_token"
+  "restaurant_token": "..........."
   "search_value":   "Sides"
 }
 
@@ -244,7 +246,7 @@ A particular food item and its complete details is fetched from database .
 ```ruby
 require 'unirest'
 
-response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "Sides" , access_token: "sample_api_access_token"}
+response = Unirest.get "http://localhost:3000/api/v1/restaurants/2/search", headers:{ "Accept" => "application/json" }, parameters: {search_value: "Sides" , access_token: "sample_api_access_token" , restaurant_token: "......."}
 
 response.raw_body
 ```
@@ -570,13 +572,15 @@ response.raw_body
 This endpoint search all food items of particular category in a particular restaurant.
 ### HTTP Request
 
-`GET http://localhost:3000/api/v1/restaurants/2/search?access_token=sample_api_access_token&search_value=Sides`
+`GET http://localhost:3000/api/v1/restaurants/2/search?access_token=sample_api_access_token&restaurant_token=........&search_value=Sides`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 search_value | It should be valid food item name or valid category name
+restaurant_token  | Make sure it's not empty and it will be available in database of restaurant .
+
 <aside class="success">
 All food items and their details of particular category is fetched from database .
 </aside>
